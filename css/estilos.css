@@ -6,40 +6,78 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8; /* Un gris muy suave */
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        repeating-linear-gradient(45deg, #111 0, #111 2px, #1a1a1a 2px, #1a1a1a 4px);
+    background-color: #111;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     padding: 20px;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Efecto de líneas de escaneo de monitor de taller */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.15) 0px,
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px);
+    pointer-events: none;
+    z-index: 10;
 }
 
 /* --- Título --- */
 h1 {
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: 600;
+    margin-bottom: 30px;
+    color: #48e;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(68, 136, 238, 0.5);
+    border-bottom: 2px solid #48e;
+    padding-bottom: 10px;
 }
 
 /* --- La tarjeta del formulario --- */
 form {
-    background-color: #ffffff;
-    padding: 40px 30px;
+    background:
+        linear-gradient(rgba(30, 30, 30, 0.8), rgba(30, 30, 30, 0.8)),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+    /* Efecto metal cepillado */
+    padding: 45px 35px;
     width: 100%;
-    max-width: 400px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    max-width: 420px;
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(68, 136, 238, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
 /* --- Campos de texto y etiquetas --- */
 label {
-    display: block; /* Hace que el label ocupe toda la línea */
-    margin-bottom: 15px;
-    color: #555;
-    font-size: 0.9rem;
-    font-weight: 500;
+    display: block;
+    margin-bottom: 20px;
+    color: #aaa;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
 /* Ocultamos los <br> del HTML ya que usaremos CSS para espaciar */
@@ -51,57 +89,101 @@ input[type="email"],
 input[type="password"] {
     display: block;
     width: 100%;
-    padding: 12px;
-    margin-top: 5px; /* Espacio entre el texto y la caja */
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 14px;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(68, 136, 238, 0.3);
+    border-radius: 4px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    color: #48e;
+    font-family: monospace;
+    transition: all 0.3s;
 }
 
 input[type="email"]:focus,
 input[type="password"]:focus {
-    border-color: #007bff; /* Azul al hacer clic */
+    background-color: rgba(0, 0, 0, 0.7);
+    border-color: #48e;
     outline: none;
+    box-shadow: 0 0 15px rgba(68, 136, 238, 0.3);
 }
 
 /* --- Botón de Login --- */
 input[type="submit"] {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    background-color: #007bff; /* Azul moderno */
-    color: white;
+    padding: 15px;
+    margin-top: 25px;
+    background: linear-gradient(145deg, #4488ee, #3377dd);
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(68, 136, 238, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: pulseEngine 2s infinite ease-in-out;
+}
+
+@keyframes pulseEngine {
+    0% {
+        box-shadow: 0 0 10px rgba(68, 136, 238, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(68, 136, 238, 0.7);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(68, 136, 238, 0.4);
+    }
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+    background: #5599ff;
+    transform: scale(1.02);
+    box-shadow: 0 0 35px rgba(68, 136, 238, 0.8);
+    animation: none;
 }
 
-/* --- Mensajes de Error (Lista) --- */
+input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* --- Mensajes de Error (Lista tipo Diagnóstico) --- */
 ul {
     list-style: none;
-    background-color: #ffe6e6;
-    border: 1px solid #ffcccc;
-    padding: 15px;
-    border-radius: 5px;
+    background-color: rgba(255, 0, 0, 0.05);
+    border: 1px dashed #ff4444;
+    padding: 20px;
+    border-radius: 4px;
     width: 100%;
-    max-width: 400px;
-    margin-top: 20px;
-    text-align: center;
+    max-width: 420px;
+    margin-top: 25px;
+    position: relative;
 }
 
-/* Aunque tu PHP tiene un style inline, esto ayuda a la alineación */
-li {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
+ul::before {
+    content: "⚠️ DIAGNOSTIC ERROR";
+    display: block;
+    font-size: 0.7rem;
+    color: #ff4444;
+    font-weight: 900;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
 }
+
+li {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    font-family: monospace;
+    color: #ff6666;
+    border-left: 2px solid #ff4444;
+    padding-left: 10px;
+}
+
 li:last-child {
     margin-bottom: 0;
 }

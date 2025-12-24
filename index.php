@@ -10,16 +10,18 @@ if (!isset($_SESSION["email"])) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Sistema Taller - Panel Principal</title>
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <div class="contenedor-principal">
-        
+
         <header class="encabezado-panel">
             <h1>SISTEMA DE GESTIÓN</h1>
             <div class="info-usuario">
@@ -29,7 +31,7 @@ if (!isset($_SESSION["email"])) {
         </header>
 
         <nav class="menu-grid">
-            
+
             <a href="clientes/listar.php" class="tarjeta-modulo">
                 <div class="icono">👥</div>
                 <h2>CLIENTES</h2>
@@ -57,4 +59,5 @@ if (!isset($_SESSION["email"])) {
     </div>
 
 </body>
+
 </html>

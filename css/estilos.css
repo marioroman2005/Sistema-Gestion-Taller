@@ -1,0 +1,107 @@
+/* --- Reset básico --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8; /* Un gris muy suave */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* --- Título --- */
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* --- La tarjeta del formulario --- */
+form {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra suave */
+}
+
+/* --- Campos de texto y etiquetas --- */
+label {
+    display: block; /* Hace que el label ocupe toda la línea */
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Ocultamos los <br> del HTML ya que usaremos CSS para espaciar */
+form br {
+    display: none;
+}
+
+input[type="email"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px; /* Espacio entre el texto y la caja */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff; /* Azul al hacer clic */
+    outline: none;
+}
+
+/* --- Botón de Login --- */
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #007bff; /* Azul moderno */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+}
+
+/* --- Mensajes de Error (Lista) --- */
+ul {
+    list-style: none;
+    background-color: #ffe6e6;
+    border: 1px solid #ffcccc;
+    padding: 15px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Aunque tu PHP tiene un style inline, esto ayuda a la alineación */
+li {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+li:last-child {
+    margin-bottom: 0;
+}

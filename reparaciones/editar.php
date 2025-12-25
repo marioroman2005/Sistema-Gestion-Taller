@@ -72,7 +72,7 @@ $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
 
 <body>
 
-    <form method="POST" action="editar.php?id=<?= $id_reparacion ?>">
+    <form method="POST" action="editar.php?id=<?= $id_reparacion ?>" onsubmit="return validarReparacion();">
         <h1>Editar Reparación #<?= $id_reparacion ?></h1>
 
         <?php if (!empty($errores)): ?>
@@ -118,6 +118,7 @@ $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
     </form>
 
     <?php cerrarConexion($conexion); ?>
+    <script src="../js/validaciones.js"></script>
 </body>
 
 </html>

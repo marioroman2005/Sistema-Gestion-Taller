@@ -88,7 +88,7 @@ $resultado = mysqli_query($conexion, $sql);
                         <td><?= number_format($fila['precio'], 2) ?> €</td>
                         <td class="acciones">
                             <a href="editar.php?id=<?= $fila['id_reparacion'] ?>" class="btn-accion btn-editar">Editar</a>
-                            <a href="borrar.php?id=<?= $fila['id_reparacion'] ?>" class="btn-accion btn-borrar" onclick="return confirm('¿Estás seguro de eliminar esta reparación?');">Borrar</a>
+                            <a href="borrar.php?id=<?= $fila['id_reparacion'] ?>" class="btn-accion btn-borrar" onclick="return confirmarBorrado();">Borrar</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -104,6 +104,7 @@ $resultado = mysqli_query($conexion, $sql);
     </div>
 
     <?php cerrarConexion($conexion); ?>
+    <script src="../js/validaciones.js"></script>
 
 </body>
 

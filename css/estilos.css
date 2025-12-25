@@ -261,3 +261,116 @@ li {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   TABLAS Y LISTADOS
+   ========================================= */
+.tabla-listado {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tabla-listado thead tr {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.tabla-listado th,
+.tabla-listado td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.tabla-listado tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.tabla-listado tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.tabla-listado tbody tr:hover {
+    background-color: #f1f8ff;
+    transition: background-color 0.2s;
+}
+
+/* Botones de Acción */
+.acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-accion {
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+.btn-editar {
+    background-color: #ffc107;
+    color: #333;
+    border: 1px solid #e0a800;
+}
+
+.btn-editar:hover {
+    background-color: #e0a800;
+}
+
+.btn-borrar {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #bd2130;
+}
+
+.btn-borrar:hover {
+    background-color: #c82333;
+}
+
+.btn-nuevo {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.btn-nuevo:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.encabezado-listado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-volver {
+    color: #6c757d;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.btn-volver:hover {
+    color: #343a40;
+    text-decoration: underline;
+}

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Seguridad: Si no hay usuario logueado, redirigir al login
 if (!isset($_SESSION["email"])) {
     header("Location: login.php");
     exit;
@@ -53,7 +52,7 @@ if (!isset($_SESSION["email"])) {
         </nav>
 
         <footer class="pie-panel">
-            <a href="logout.php" class="btn-salir">CERRAR SESIÓN [ABORT]</a>
+            <a href="logout.php" class="btn-salir">CERRAR SESIÓN</a>
         </footer>
 
     </div>

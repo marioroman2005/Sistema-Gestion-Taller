@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Seguridad: Si no hay usuario logueado, redirigir al login
+
 if (!isset($_SESSION["email"])) {
     header("Location: ../login.php");
     exit;
@@ -12,7 +12,7 @@ require_once "../includes/funciones.php";
 
 $conexion = abrirConexion();
 
-// Consulta para obtener reparaciones con datos del vehículo y cliente
+
 $sql = "SELECT r.id_reparacion, r.fecha, r.descripcion, r.estado, r.precio, 
                v.matricula, v.marca, v.modelo, c.nombre as cliente_nombre
         FROM reparaciones r

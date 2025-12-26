@@ -9,7 +9,6 @@ $valor_email = "";
 
 if (isset($_POST["Acceder"])) {
 
-    // email
     if (!isset($_POST["email"]) || $_POST["email"] == "") {
         $errores["email"] = "Introduce un email";
     } else {
@@ -22,12 +21,10 @@ if (isset($_POST["Acceder"])) {
         }
     }
 
-    // contraseña
     if (!isset($_POST["password"]) || $_POST["password"] == "") {
         $errores["password"] = "Introduce la contraseña";
     }
 
-    // si no hay errores
     if (!isset($errores["email"]) && !isset($errores["password"])) {
 
         $con = abrirConexion();

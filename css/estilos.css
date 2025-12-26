@@ -137,7 +137,6 @@ li {
 
 .encabezado-panel {
     display: flow-root;
-    /* Limpia floats */
 }
 
 .encabezado-panel h1 {

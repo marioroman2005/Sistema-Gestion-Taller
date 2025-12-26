@@ -12,7 +12,7 @@ require_once "../includes/funciones.php";
 $conexion = abrirConexion();
 $errores = [];
 
-// Procesar formulario
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_vehiculo = (int)$_POST["id_vehiculo"];
     $descripcion = limpiar($_POST["descripcion"]);
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $estado = $_POST["estado"];
     $precio = (float)$_POST["precio"];
 
-    // Validaciones básicas
+
     if ($id_vehiculo <= 0) $errores[] = "Debes seleccionar un vehículo.";
     if (empty($descripcion)) $errores[] = "La descripción es obligatoria.";
     if (empty($fecha)) $errores[] = "La fecha es obligatoria.";
@@ -40,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Obtener vehículos para el select
 $sql_vehiculos = "SELECT id_vehiculo, matricula, marca, modelo FROM vehiculos ORDER BY matricula ASC";
 $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
 ?>
@@ -52,6 +51,8 @@ $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
     <meta charset="UTF-8">
     <title>Nueva Reparación - Taller</title>
     <link rel="stylesheet" href="../css/estilos.css">
+    <!-- CSS de jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -81,7 +82,7 @@ $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
         <textarea name="descripcion" id="descripcion" rows="4" required style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 2px solid #e1e4e8; background: #f9f9f9;"><?= isset($_POST['descripcion']) ? htmlspecialchars($_POST['descripcion']) : '' ?></textarea>
 
         <label for="fecha">Fecha Entrada:</label>
-        <input type="date" name="fecha" id="fecha" value="<?= isset($_POST['fecha']) ? $_POST['fecha'] : date('Y-m-d') ?>" required>
+        <input type="text" name="fecha" id="fecha" value="<?= isset($_POST['fecha']) ? $_POST['fecha'] : date('Y-m-d') ?>" required autocomplete="off">
 
         <label for="estado">Estado:</label>
         <select name="estado" id="estado" required style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 2px solid #e1e4e8; background: #f9f9f9;">
@@ -101,7 +102,30 @@ $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
     </form>
 
     <?php cerrarConexion($conexion); ?>
+
+    <!-- Scripts de jQuery y Plugins -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="../js/plugins.js"></script>
     <script src="../js/validaciones.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Datepicker
+            $("#fecha").datepicker({
+                dateFormat: "yy-mm-dd",
+                firstDay: 1,
+                dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+            });
+
+            // 2. Contador de Caracteres
+            $("#descripcion").contarCaracteres({
+                color: "#007bff",
+                texto: "Llevas escritos: "
+            });
+        });
+    </script>
 </body>
 
 </html>

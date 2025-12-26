@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
     $conexion = abrirConexion();
     $id = (int)$_GET['id'];
 
-    // Evitar borrar si el ID no es válido
+
     if ($id > 0) {
         $sql = "DELETE FROM reparaciones WHERE id_reparacion = ?";
         $stmt = mysqli_prepare($conexion, $sql);

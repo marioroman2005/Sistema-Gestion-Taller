@@ -18,7 +18,6 @@ if ($id_reparacion <= 0) {
     exit;
 }
 
-// Procesar formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_reparacion = (int)$_POST["id_reparacion"];
     $id_vehiculo = (int)$_POST["id_vehiculo"];
@@ -46,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Obtener datos de la reparación
+
 $sql_datos = "SELECT * FROM reparaciones WHERE id_reparacion = $id_reparacion";
 $res_datos = mysqli_query($conexion, $sql_datos);
 $reparacion = mysqli_fetch_assoc($res_datos);
@@ -56,7 +55,7 @@ if (!$reparacion) {
     exit;
 }
 
-// Obtener vehículos
+
 $sql_vehiculos = "SELECT id_vehiculo, matricula, marca, modelo FROM vehiculos ORDER BY matricula ASC";
 $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
 ?>
@@ -68,6 +67,8 @@ $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
     <meta charset="UTF-8">
     <title>Editar Reparación - Taller</title>
     <link rel="stylesheet" href="../css/estilos.css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -98,7 +99,7 @@ $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
         <textarea name="descripcion" id="descripcion" rows="4" required style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 2px solid #e1e4e8; background: #f9f9f9;"><?= htmlspecialchars($reparacion['descripcion']) ?></textarea>
 
         <label for="fecha">Fecha Entrada:</label>
-        <input type="date" name="fecha" id="fecha" value="<?= $reparacion['fecha'] ?>" required>
+        <input type="text" name="fecha" id="fecha" value="<?= $reparacion['fecha'] ?>" required autocomplete="off">
 
         <label for="estado">Estado:</label>
         <select name="estado" id="estado" required style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 2px solid #e1e4e8; background: #f9f9f9;">
@@ -118,7 +119,28 @@ $res_vehiculos = mysqli_query($conexion, $sql_vehiculos);
     </form>
 
     <?php cerrarConexion($conexion); ?>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="../js/plugins.js"></script>
     <script src="../js/validaciones.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#fecha").datepicker({
+                dateFormat: "yy-mm-dd",
+                firstDay: 1,
+                dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+            });
+
+
+            $("#descripcion").contarCaracteres({
+                color: "#007bff",
+                texto: "Llevas escritos: "
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -37,7 +37,7 @@ if (!isset($_SESSION["email"])) {
                 <p>Gestión de datos personales</p>
             </a>
 
-            <a href="vehiculos/index.php" class="tarjeta-modulo">
+            <a href="vehiculos/listar.php" class="tarjeta-modulo">
                 <div class="icono">🚗</div>
                 <h2>VEHÍCULOS</h2>
                 <p>Flota y fichas técnicas</p>

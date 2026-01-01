@@ -28,8 +28,7 @@
     };
 })(jQuery);
 
-// Plugin 2: Contador de Caracteres Simple (contadorSimple)
-// Muestra la cantidad de caracteres escritos.
+// Plugin 2: Muestra la cantidad de caracteres escritos.
 (function ($) {
     $.fn.contadorSimple = function () {
         return this.each(function () {
@@ -39,7 +38,6 @@
             // Insertar el contador inmediatamente después del input
             $input.after($span);
 
-            // Función interna para actualizar
             function actualizar() {
                 var largo = $input.val().length;
                 $span.text("Caracteres: " + largo);
@@ -109,14 +107,12 @@
 
             // Evento click en el botón
             $btn.on("click", function () {
-                $input.val("").trigger("input").focus(); // Borrar, disparar eventos y devolver foco
+                $input.val("").trigger("input").focus();
                 toggleBtn();
             });
 
-            // Eventos del input
             $input.on("input keyup", toggleBtn);
 
-            // Inicializar estado
             toggleBtn();
         });
     };

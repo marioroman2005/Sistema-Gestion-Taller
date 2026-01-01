@@ -31,15 +31,13 @@ function validarReparacion() {
     return true;
 }
 
-// Eventos para Vehículos (EPD JS Avanzado)
 document.addEventListener("DOMContentLoaded", function () {
 
-    // 1. Evento keyup para validar Matrícula en tiempo real
+    // Evento para validar Matrícula en tiempo real
     const inputMatricula = document.getElementById("matricula");
     if (inputMatricula) {
         inputMatricula.addEventListener("keyup", function () {
             const valor = this.value;
-            // Expresión regular simple: 4 números + 3 letras (ej: 1234ABC)
             const regex = /^[0-9]{4}[A-Za-z]{3}$/;
 
             if (regex.test(valor)) {
@@ -56,17 +54,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 2. Evento blur para convertir Marca y Modelo a Mayúsculas automáticamente
+    // Evento para convertir Marca y Modelo a Mayúsculas automáticamente
     const inputsTexto = ["marca", "modelo"];
     inputsTexto.forEach(function (id) {
         const input = document.getElementById(id);
         if (input) {
             input.addEventListener("blur", function () {
-                this.value = this.value.toUpperCase(); // Convierte a mayúsculas al salir del campo
-                this.style.backgroundColor = ""; // Limpia color de fondo si tenía
+                this.value = this.value.toUpperCase();
+                this.style.backgroundColor = "";
             });
 
-            // Efecto visual extra: cambiar fondo al tener foco (focus)
             input.addEventListener("focus", function () {
                 this.style.backgroundColor = "#fffde7";
             });

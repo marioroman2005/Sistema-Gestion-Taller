@@ -109,6 +109,7 @@ $res_clientes = mysqli_query($conexion, $sql_clientes);
 
     <?php cerrarConexion($conexion); ?>
 
+    <script src="../js/validaciones.js"></script>
 </body>
 
 </html>

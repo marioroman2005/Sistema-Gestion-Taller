@@ -127,8 +127,15 @@ $res_clientes = mysqli_query($conexion, $sql_clientes);
 
     <?php cerrarConexion($conexion); ?>
     
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../js/validaciones.js"></script>
-
+    <script src="../js/plugins.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("input[type='text'], select").resaltadoFoco();
+            $("#marca, #modelo").contadorSimple();
+            $("#marca, #modelo").botonLimpiar();
+        });
+    </script>
 </body>
-
 </html>

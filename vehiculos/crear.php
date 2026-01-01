@@ -109,7 +109,23 @@ $res_clientes = mysqli_query($conexion, $sql_clientes);
 
     <?php cerrarConexion($conexion); ?>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../js/validaciones.js"></script>
-</body>
+    <script src="../js/plugins.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Aplicar Plugin 1: Resaltado visual
+            $("input[type='text'], select").resaltadoFoco({
+                colorFoco: "#e0f7fa", 
+                colorError: "#ffebee"
+            });
 
+            // Aplicar Plugin 2: Contador de caracteres
+            $("#marca, #modelo").contadorSimple();
+
+            // Aplicar Plugin 3 (Nuevo): Botón Limpiar
+            $("#marca, #modelo").botonLimpiar();
+        });
+    </script>
+</body>
 </html>

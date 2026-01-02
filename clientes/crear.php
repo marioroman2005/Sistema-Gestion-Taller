@@ -51,8 +51,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-    <form method="POST" action="crear.php">
-        <h1>Registrar Cliente</h1>
+    <form method="POST" action="crear.php" onsubmit="return validarCliente()">
+    <h1>Registrar Cliente</h1>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/plugins.js"></script>z
+    <script src="../js/validaciones.js"></script>
 
         <?php if (!empty($errores)): ?>
             <ul>

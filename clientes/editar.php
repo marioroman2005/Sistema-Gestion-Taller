@@ -66,7 +66,7 @@ if (!$cliente) {
 
 <body>
 
-    <form method="POST" action="editar.php?id=<?= $id_cliente ?>">
+    <form method="POST" action="editar.php?id=<?= $id_cliente ?>" onsubmit="return validarCliente()">
         <h1>Editar Cliente #<?= $id_cliente ?></h1>
 
         <?php if (!empty($errores)): ?>
@@ -99,5 +99,9 @@ if (!$cliente) {
     </form>
 
     <?php cerrarConexion($conexion); ?>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/validaciones.js"></script>
 </body>
 </html>

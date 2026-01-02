@@ -1,45 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION["email"])) {
-    header("Location: ../login.php");
-    exit;
-}
-
-require_once "../includes/conexion.php";
-require_once "../includes/funciones.php";
-
-$conexion = abrirConexion();
-$errores = [];
-
-// Procesar formulario
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $dni = limpiar($_POST["dni"]);
-    $nombre = limpiar($_POST["nombre"]);
-    $telefono = limpiar($_POST["telefono"]);
-    $email = limpiar($_POST["email"]);
-
-    // Validaciones básicas
-    if (empty($dni)) $errores[] = "El DNI es obligatorio.";
-    if (empty($nombre)) $errores[] = "El nombre es obligatorio.";
-    if (empty($telefono)) $errores[] = "El teléfono es obligatorio.";
-
-    if (empty($errores)) {
-        $sql = "INSERT INTO clientes (dni, nombre, telefono, email) VALUES (?, ?, ?, ?)";
-        $stmt = mysqli_prepare($conexion, $sql);
-        mysqli_stmt_bind_param($stmt, "ssss", $dni, $nombre, $telefono, $email);
-
-        if (mysqli_stmt_execute($stmt)) {
-            header("Location: listar.php");
-            exit;
-        } else {
-            $errores[] = "Error al guardar (posible DNI duplicado): " . mysqli_error($conexion);
-        }
-        mysqli_stmt_close($stmt);
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -52,12 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <form method="POST" action="crear.php" onsubmit="return validarCliente()">
-    <h1>Registrar Cliente</h1>
-    </form>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/plugins.js"></script>z
-    <script src="../js/validaciones.js"></script>
+        <h1>Registrar Cliente</h1>
 
         <?php if (!empty($errores)): ?>
             <ul>
@@ -83,9 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div style="text-align: center; margin-top: 20px;">
             <a href="listar.php" style="color: #666; text-decoration: none;">Cancelar</a>
-        </div>
+        </div>s
     </form>
 
     <?php cerrarConexion($conexion); ?>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="../js/plugins.js"></script>
+    
+    <script src="../js/validaciones.js"></script>
+
 </body>
 </html>

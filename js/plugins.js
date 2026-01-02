@@ -117,3 +117,91 @@
         });
     };
 })(jQuery);
+// ==========================================
+// 1. FUNCIONES DE VALIDACIÓN (ONSUBMIT)
+// ==========================================
+
+function confirmarBorrado() {
+    return confirm('¿Estás seguro de eliminar este registro?');
+}
+
+function validarReparacion() {
+    // ... (Tu código existente de reparaciones) ...
+    let descripcion = document.getElementById('descripcion').value.trim();
+    let fecha = document.getElementById('fecha').value.trim();
+    if (descripcion.length === 0) return false;
+    if (fecha.length === 0) return false;
+    return true;
+}
+
+// Nueva función para Clientes
+function validarCliente() {
+    let dni = document.getElementById('dni').value.trim();
+    let nombre = document.getElementById('nombre').value.trim();
+    let telefono = document.getElementById('telefono').value.trim();
+
+    if (dni.length === 0) {
+        alert('El DNI es obligatorio.');
+        return false;
+    }
+    if (nombre.length === 0) {
+        alert('El nombre es obligatorio.');
+        return false;
+    }
+    if (telefono.length < 9) {
+        alert('El teléfono debe tener al menos 9 dígitos.');
+        return false;
+    }
+    return true;
+}
+
+// ==========================================
+// 2. EVENTOS JAVASCRIPT NATIVO (DOM)
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // --- EVENTO JS 1: Capitalizar Nombre (Blur) ---
+    // Convierte "juan perez" en "Juan Perez" al salir del campo
+    const inputNombre = document.getElementById("nombre");
+    if (inputNombre) {
+        inputNombre.addEventListener("blur", function () {
+            this.value = this.value.toLowerCase().replace(/(?:^|\s)\S/g, function (a) {
+                return a.toUpperCase();
+            });
+        });
+    }
+
+    // --- EVENTO JS 2: Restricción Numérica Teléfono (Input) ---
+    // Elimina letras en tiempo real mientras escribes
+    const inputTelefono = document.getElementById("telefono");
+    if (inputTelefono) {
+        inputTelefono.addEventListener("input", function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    }
+    
+    // (Aquí irían tus eventos de reparaciones como la Matrícula...)
+});
+
+// ==========================================
+// 3. INICIALIZACIÓN DE PLUGINS (JQUERY)
+// ==========================================
+
+if (typeof jQuery !== 'undefined') {
+    $(document).ready(function() {
+        
+        // --- ACTIVACIÓN PLUGIN 1: Resaltado de Foco ---
+        // Se aplica a los campos principales del formulario clientes
+        $("#dni, #nombre, #telefono, #email").resaltadoFoco({
+            colorFoco: "#e8f0fe", // Azulito Google
+            colorError: "#ffebee" // Rojito suave
+        });
+
+        // --- ACTIVACIÓN PLUGIN 2: Contador Simple ---
+        // Se aplica solo al campo Nombre
+        $("#nombre").contadorSimple();
+
+        // (Aquí iría la configuración de Datepicker de reparaciones...)
+    });
+}

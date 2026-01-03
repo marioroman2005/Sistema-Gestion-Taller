@@ -117,16 +117,14 @@
         });
     };
 })(jQuery);
-// ==========================================
+
 // 1. FUNCIONES DE VALIDACIÓN (ONSUBMIT)
-// ==========================================
 
 function confirmarBorrado() {
     return confirm('¿Estás seguro de eliminar este registro?');
 }
 
 function validarReparacion() {
-    // ... (Tu código existente de reparaciones) ...
     let descripcion = document.getElementById('descripcion').value.trim();
     let fecha = document.getElementById('fecha').value.trim();
     if (descripcion.length === 0) return false;
@@ -155,9 +153,7 @@ function validarCliente() {
     return true;
 }
 
-// ==========================================
 // 2. EVENTOS JAVASCRIPT NATIVO (DOM)
-// ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -180,28 +176,24 @@ document.addEventListener("DOMContentLoaded", function () {
             this.value = this.value.replace(/[^0-9]/g, '');
         });
     }
-    
-    // (Aquí irían tus eventos de reparaciones como la Matrícula...)
+
 });
 
-// ==========================================
 // 3. INICIALIZACIÓN DE PLUGINS (JQUERY)
-// ==========================================
 
 if (typeof jQuery !== 'undefined') {
-    $(document).ready(function() {
-        
+    $(document).ready(function () {
+
         // --- ACTIVACIÓN PLUGIN 1: Resaltado de Foco ---
         // Se aplica a los campos principales del formulario clientes
         $("#dni, #nombre, #telefono, #email").resaltadoFoco({
-            colorFoco: "#e8f0fe", // Azulito Google
-            colorError: "#ffebee" // Rojito suave
+            colorFoco: "#e8f0fe",
+            colorError: "#ffebee"
         });
 
-        // --- ACTIVACIÓN PLUGIN 2: Contador Simple ---
+        // Activación Plugin 2: Contador Simple
         // Se aplica solo al campo Nombre
         $("#nombre").contadorSimple();
 
-        // (Aquí iría la configuración de Datepicker de reparaciones...)
     });
 }

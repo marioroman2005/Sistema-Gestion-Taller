@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Seguridad
 if (!isset($_SESSION["email"])) {
     header("Location: ../login.php");
     exit;
@@ -12,7 +11,6 @@ require_once "../includes/funciones.php";
 
 $conexion = abrirConexion();
 
-// Consulta para obtener todos los clientes
 $sql = "SELECT * FROM clientes ORDER BY nombre ASC";
 $resultado = mysqli_query($conexion, $sql);
 ?>
@@ -82,4 +80,5 @@ $resultado = mysqli_query($conexion, $sql);
     </script>
 
 </body>
+
 </html>

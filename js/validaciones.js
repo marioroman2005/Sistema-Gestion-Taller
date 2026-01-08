@@ -16,7 +16,6 @@ function validarReparacion() {
         alert('La fecha no puede estar vacía.');
         return false;
     }
-    // Verificar si existe el select
     if (vehiculoSelect && vehiculoSelect.value === "") {
         alert('Debes seleccionar un vehículo.');
         return false;
@@ -29,17 +28,12 @@ function validarReparacion() {
     return true;
 }
 
-// --- NUEVA FUNCION: Validar Formulario de Clientes ---
-// ==========================================
-// 1. FUNCIONES DE VALIDACIÓN (ONSUBMIT)
-// ==========================================
 
 function confirmarBorrado() {
     return confirm('¿Estás seguro de eliminar este registro?');
 }
 
 function validarReparacion() {
-    // ... (Tu código existente de reparaciones) ...
     let descripcion = document.getElementById('descripcion').value.trim();
     let fecha = document.getElementById('fecha').value.trim();
     if (descripcion.length === 0) return false;
@@ -47,7 +41,6 @@ function validarReparacion() {
     return true;
 }
 
-// Nueva función para Clientes
 function validarCliente() {
     let dni = document.getElementById('dni').value.trim();
     let nombre = document.getElementById('nombre').value.trim();
@@ -68,9 +61,6 @@ function validarCliente() {
     return true;
 }
 
-// ==========================================
-// 2. EVENTOS JAVASCRIPT NATIVO (DOM)
-// ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -86,15 +76,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // --- EVENTO JS 2: Restricción Numérica Teléfono (Input) ---
-    // Elimina letras en tiempo real mientras escribes
     const inputTelefono = document.getElementById("telefono");
     if (inputTelefono) {
         inputTelefono.addEventListener("input", function () {
             this.value = this.value.replace(/[^0-9]/g, '');
         });
     }
-    
-    // (Aquí irían tus eventos de reparaciones como la Matrícula...)
+
 });
 
 // ==========================================
@@ -102,19 +90,16 @@ document.addEventListener("DOMContentLoaded", function () {
 // ==========================================
 
 if (typeof jQuery !== 'undefined') {
-    $(document).ready(function() {
-        
+    $(document).ready(function () {
+
         // --- ACTIVACIÓN PLUGIN 1: Resaltado de Foco ---
-        // Se aplica a los campos principales del formulario clientes
         $("#dni, #nombre, #telefono, #email").resaltadoFoco({
             colorFoco: "#e8f0fe", // Azulito Google
             colorError: "#ffebee" // Rojito suave
         });
 
         // --- ACTIVACIÓN PLUGIN 2: Contador Simple ---
-        // Se aplica solo al campo Nombre
         $("#nombre").contadorSimple();
 
-        // (Aquí iría la configuración de Datepicker de reparaciones...)
     });
 }

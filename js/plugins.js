@@ -1,11 +1,10 @@
 // Plugin 1: Resaltado de Foco (resaltadoFoco)
-// Cambia el color de fondo al recibir foco y valida si está vacío al salir (blur).
 (function ($) {
     $.fn.resaltadoFoco = function (opciones) {
         var config = $.extend({
-            colorFoco: "#e3f2fd",   // Azul claro por defecto
-            colorError: "#ffcdd2", // Rojo claro por defecto
-            colorNormal: "#ffffff" // Blanco
+            colorFoco: "#e3f2fd",
+            colorError: "#ffcdd2",
+            colorNormal: "#ffffff"
         }, opciones);
 
         return this.each(function () {
@@ -17,10 +16,9 @@
 
             $input.on("blur", function () {
                 if ($(this).val().trim() === "") {
-                    // Si está vacío, marcar en rojo
+
                     $(this).css("background-color", config.colorError);
                 } else {
-                    // Si tiene contenido, volver a normal
                     $(this).css("background-color", config.colorNormal);
                 }
             });
@@ -35,7 +33,6 @@
             var $input = $(this);
             var $span = $("<div class='contador-info' style='font-size: 0.8em; color: gray; margin-bottom: 10px; text-align: right;'></div>");
 
-            // Insertar el contador inmediatamente después del input
             $input.after($span);
 
             function actualizar() {
@@ -43,17 +40,15 @@
                 $span.text("Caracteres: " + largo);
             }
 
-            // Eventos
+
             $input.on("input keyup", actualizar);
 
-            // Inicializar
             actualizar();
         });
     };
 })(jQuery);
 
 // Plugin 3: Contador de Caracteres (contarCaracteres)
-// (Restaurado: Usado en Reparaciones para la descripción)
 (function ($) {
     $.fn.contarCaracteres = function (opciones) {
         // Configuración por defecto
@@ -82,21 +77,17 @@
 })(jQuery);
 
 // Plugin 4: Botón Limpiar (botonLimpiar)
-// Añade un pequeño botón "X" para borrar el contenido del campo rápidamente.
 (function ($) {
     $.fn.botonLimpiar = function () {
         return this.each(function () {
             var $input = $(this);
 
-            // Envolver el input en un contenedor relativo para posicionar el botón
             var $wrapper = $("<div style='position: relative; margin-bottom: 20px;'></div>");
             $input.wrap($wrapper);
 
-            // Crear el botón X
             var $btn = $("<span style='position: absolute; right: 10px; top: 12px; cursor: pointer; color: #999; font-weight: bold; display: none;'>✖</span>");
             $input.after($btn);
 
-            // Mostrar/Ocultar botón según el contenido
             function toggleBtn() {
                 if ($input.val().length > 0) {
                     $btn.fadeIn(200);
@@ -105,7 +96,6 @@
                 }
             }
 
-            // Evento click en el botón
             $btn.on("click", function () {
                 $input.val("").trigger("input").focus();
                 toggleBtn();
@@ -132,7 +122,6 @@ function validarReparacion() {
     return true;
 }
 
-// Nueva función para Clientes
 function validarCliente() {
     let dni = document.getElementById('dni').value.trim();
     let nombre = document.getElementById('nombre').value.trim();
@@ -169,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // --- EVENTO JS 2: Restricción Numérica Teléfono (Input) ---
-    // Elimina letras en tiempo real mientras escribes
     const inputTelefono = document.getElementById("telefono");
     if (inputTelefono) {
         inputTelefono.addEventListener("input", function () {
@@ -185,14 +173,12 @@ if (typeof jQuery !== 'undefined') {
     $(document).ready(function () {
 
         // --- ACTIVACIÓN PLUGIN 1: Resaltado de Foco ---
-        // Se aplica a los campos principales del formulario clientes
         $("#dni, #nombre, #telefono, #email").resaltadoFoco({
             colorFoco: "#e8f0fe",
             colorError: "#ffebee"
         });
 
         // Activación Plugin 2: Contador Simple
-        // Se aplica solo al campo Nombre
         $("#nombre").contadorSimple();
 
     });
